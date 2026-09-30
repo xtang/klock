@@ -1,0 +1,27 @@
+services:
+  klock:
+    build: ../app
+    image: klock:production
+    restart: unless-stopped
+    env_file: ../.env.prod
+    environment:
+      HOST: 0.0.0.0
+      PORT: '5188'
+      KLOCK_DB: /data/klock.db
+    ports:
+      - '127.0.0.1:5188:5188'
+    volumes:
+      - ../data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options:
+        max-size: 5m
+        max-file: '3'

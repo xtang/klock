@@ -1,0 +1,11 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${KLOCK_DOMAIN};
+    access_log off;
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/klock-acme;
+        default_type text/plain;
+    }
+    location / { return 503; }
+}

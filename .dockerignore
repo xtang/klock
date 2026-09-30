@@ -1,0 +1,7 @@
+**
+!Dockerfile
+!requirements.txt
+!server.py
+!google_login.py
+!public/
+!public/**
